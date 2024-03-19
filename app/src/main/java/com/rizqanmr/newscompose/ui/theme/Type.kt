@@ -31,10 +31,9 @@ val Typography = Typography(
     ),
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        letterSpacing = 1.1.sp
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.Default,
