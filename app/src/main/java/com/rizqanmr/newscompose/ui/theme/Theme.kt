@@ -19,7 +19,9 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = DarkRed,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    background = Color(0xFF424142),
+    surface = Color(0xFFC7BEC7)
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -32,9 +34,15 @@ private val LightColorScheme = lightColorScheme(
     onSecondary = Color.White,
     onTertiary = Color.White,
     onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+    onSurface = Color(0xFF1C1B1F)
 
 )
+
+val sourceTextColor = Color(0xFF474646)
+val sourceTextColorDark = Color(0xFF868080)
+
+val titleColorLight = Color.Black
+val titleColorDark = Color(0xB3DCDCDC)
 
 @Composable
 fun NewsComposeTheme(

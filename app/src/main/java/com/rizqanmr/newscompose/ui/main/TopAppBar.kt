@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +33,7 @@ fun TopAppBar(@StringRes titleResource: Int, onThemeSwitch: () -> Unit) {
         Text(
             modifier = Modifier.padding(top = 40.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
             text = stringResource(id = titleResource),
-            style = Typography.titleLarge
+            style = Typography.titleLarge.copy(color = MaterialTheme.colorScheme.surface)
         )
         Box(modifier = Modifier.padding(top = 24.dp, end = 8.dp)) {
             ThemeSwitcher(onThemeSwitch = {

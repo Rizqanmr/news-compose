@@ -16,12 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
 import com.rizqanmr.newscompose.R
+import com.rizqanmr.newscompose.data.models.NewsArticle
 import com.rizqanmr.newscompose.ui.theme.Typography
 
 @Composable
 fun NewsListContainer(
     newsUIState: NewsUIState,
+    lazyPagingItems: LazyPagingItems<NewsArticle>,
     retry: () -> Unit
 ) {
     Surface(
@@ -34,7 +37,22 @@ fun NewsListContainer(
                 end = 10.dp
             )
     ) {
-
+        when (newsUIState) {
+            is NewsUIState.LoadingState -> {
+                CircularLoader()
+            }
+            is NewsUIState.Success -> {
+                NewsList(news = lazyPagingItems)
+            }
+            is NewsUIState.Error -> {
+                ErrorView(
+                    errorMessage = newsUIState.message,
+                    showRetry = true,
+                    retry = retry
+                )
+            }
+            else -> {}
+        }
     }
 }
 

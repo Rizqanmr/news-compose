@@ -7,20 +7,27 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.rizqanmr.newscompose.R
+import com.rizqanmr.newscompose.data.models.NewsArticle
 import com.rizqanmr.newscompose.viewmodels.MainViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainUI(viewModel: MainViewModel) {
-    val uiState = viewModel.newsUiState.observeAsState().value!!
+    val uiState by viewModel.newsUiState.collectAsState()
+    val lazyPagingItems = viewModel.lazyPagingItems.collectAsLazyPagingItems()
 
     Scaffold(
         content = {
             BodyContent(
                 newsUIState = uiState,
+                lazyPagingItems = lazyPagingItems,
                 onThemeSwitch = {
                     viewModel.performAction(MainViewModel.Action.SwitchTheme)
                 },
@@ -35,6 +42,7 @@ fun MainUI(viewModel: MainViewModel) {
 @Composable
 fun BodyContent(
     newsUIState: NewsUIState,
+    lazyPagingItems: LazyPagingItems<NewsArticle>,
     onThemeSwitch: () -> Unit,
     retryFetchingNews:() -> Unit
 ) {
@@ -49,6 +57,7 @@ fun BodyContent(
             })
             NewsListContainer(
                 newsUIState = newsUIState,
+                lazyPagingItems = lazyPagingItems,
                 retry = retryFetchingNews
             )
         }
