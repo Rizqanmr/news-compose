@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -55,12 +55,9 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
 
+    // Android X
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -68,14 +65,14 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material:material:1.6.3")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("io.coil-kt:coil-compose:1.4.0")
-
-    // Integration with ViewModels
+    implementation("androidx.paging:paging-compose:3.2.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-    // Integration with LiveData
     implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.browser:browser:1.8.0")
 
 
     // Retrofit and Moshi
@@ -84,7 +81,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.6.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     implementation("com.squareup.moshi:moshi:1.12.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
@@ -92,7 +89,7 @@ dependencies {
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
+    ksp("com.google.dagger:hilt-compiler:2.50")
     // hilt navigation compose
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 

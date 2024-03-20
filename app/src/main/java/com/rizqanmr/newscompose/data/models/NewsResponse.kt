@@ -1,4 +1,4 @@
-package com.rizqanmr.newscompose.models
+package com.rizqanmr.newscompose.data.models
 
 import com.squareup.moshi.JsonClass
 

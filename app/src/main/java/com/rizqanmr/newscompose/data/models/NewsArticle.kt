@@ -1,6 +1,7 @@
-package com.rizqanmr.newscompose.models
+package com.rizqanmr.newscompose.data.models
 
 import android.annotation.SuppressLint
+import com.rizqanmr.newscompose.data.Constant
 import com.squareup.moshi.JsonClass
 import java.text.SimpleDateFormat
 
@@ -27,7 +28,7 @@ data class NewsArticle(
     }
 
     fun getAuthorName(): String {
-        val authorName = if (author.isNullOrEmpty()) "No Author" else author
+        val authorName = if (author.isNullOrEmpty()) Constant.NO_AUTHOR else author
         return "Author: $authorName"
     }
 }
